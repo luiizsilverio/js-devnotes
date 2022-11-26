@@ -2,6 +2,7 @@
 const notesContainer = document.querySelector('#notes-container');
 const noteInput = document.querySelector('#note-content');
 const addNoteBtn = document.querySelector('.add-note');
+const exportBtn = document.querySelector('#export-notes');
 
 let notes = [];
 
@@ -121,8 +122,25 @@ function clearNotes() {
   notesContainer.replaceChildren([]);
 }
 
+const linkCsv = (string) =>
+  `data:text/csvcharset=utf-8,${encodeURIComponent(string)}`
+
+function exportNotesToCSV() {
+  const output = notes.map(note => {
+    return `${note.id} | ${note.fixed} | ${note.content}`;
+  })
+  .join('\n');
+  return output
+}
+
 // Eventos
 addNoteBtn.addEventListener("click", addNote);
+
+exportBtn.addEventListener("click", () => {
+  const stringCsv = exportNotesToCSV();
+  exportBtn.setAttribute('href', linkCsv(stringCsv))
+  exportBtn.setAttribute('download', 'notes.csv')
+});
 
 // On Load
 getNotesFromStorage();
