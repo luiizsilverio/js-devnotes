@@ -76,6 +76,7 @@ header {
 #add-note-container button {
   padding: 10px;
   border-radius: 5px;
+  color: #ddd;
 }
 
 #add-note-container input {
@@ -87,7 +88,6 @@ header {
 #add-note-container button {
   cursor: pointer;
   background-color: #333;
-  color: #fff;
   border: 1px solid #525356;
 }
 
